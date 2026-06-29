@@ -1,0 +1,91 @@
+@php
+
+    $id_data_search = app()->call('App\Http\Controllers\userauth\usuadatactrl@GetDataUser')->first()->id_persona ?? null;
+    $clientesdata = app()->call('App\Http\Controllers\simpatizantes\simpatizantesCtrl@GetDatasimpatizante', ['id_data_search' => $id_data_search, 'id_opcion' => 1]);    
+    $solicituduser = $attributes->get('solicituduser') ?? null;
+    $opcionvar = $attributes->get('opcionvar') ?? null;
+@endphp
+<x-generic.searchrecord :opcionvar="$opcionvar ?? 1" :solicituduser="$solicituduser ?? null" :clientesdata="$clientesdata ?? null"/>
+
+<flux:heading size="xl">Relacion de Solicitudes</flux:heading>
+<flux:card class="space-y-6">
+    <div class="relative flex-1 overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
+        {{$solicituduser->links()}}
+        <form method="get" action="{{ route('solicitud.store',['opcionvar' => $opcionvar ?? 0]) }}" class="flex flex-col gap-6">
+        @csrf
+        <div class="overflow-hidden w-full overflow-x-auto rounded-radius border border-outline dark:border-outline-dark">
+            <table class="w-full text-left text-sm text-on-surface dark:text-on-surface-dark">
+                <thead class="border-b border-outline bg-surface-alt text-sm text-on-surface-strong dark:border-outline-dark dark:text-on-surface-dark-strong" style="background-color:darkgray">
+                    <tr>
+                        <th scope="col" class="p-1">Numero Solicitud</th>
+                        <th scope="col" class="p-1">Fecha</th>
+                        <th scope="col" class="p-1">Tipo</th>
+                        <th scope="col" class="p-1">Observación</th>
+                        <th scope="col" class="p-1">Status</th>
+                        <th scope="col" class="p-1 align-middle text-center">Action</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-outline dark:divide-outline-dark">
+                    @foreach ($solicituduser as $solicitud)
+                        @if ($solicitud->id_status == 2) 
+                            <tr class="bg-red-100 dark:bg-red-900/20">
+                          @else
+                            <tr class="bg-green-100 dark:bg-green-900/20">
+                        @endif
+                            <td class="p-1">{{ $solicitud->nro_sol }}</td>
+                            <td class="p-1">{{ $solicitud->fecha }}</td>
+                            <td class="p-1">{{ $solicitud->tipo_sol }}</td>
+                            <td class="p-1">{{ $solicitud->observacion }}</td>
+                            <td class="p-1"><span class="inline-flex overflow-hidden rounded-radius border-success px-1 py-0.5 text-xs font-medium text-success bg-success/10">{{ $solicitud->status }}</span></td>
+                            <td class="p-1" >
+                                <div class="button-group-button">
+                                    <flux:menu.radio.group>
+                                        <flux:menu.item
+                                            as="button"
+                                            href="{{ route('solicitud.edit', ['id_cliente' =>Crypt::encrypt($solicitud->id_cliente), 'id_solicitud' => Crypt::encrypt($solicitud->id), 'opcionvar' => $opcionvar ?? 0,'id_accion' => '1']) }}"
+                                            type="submit"
+                                            name="edit"
+                                            value="{{ $solicitud->id }}"
+                                            icon=""
+                                            class="button-accion button-accion-edit button-short"
+                                            data-test="edit-button"
+                                        >
+                                        </flux:menu.item>
+                                    </flux:menu.radio.group>
+                                    <flux:menu.radio.group>
+                                        <flux:menu.item
+                                            as="button"
+                                            type="submit"
+                                            name="printer"
+                                            href="{{ route('solicitud.edit', ['id_cliente' => Crypt::encrypt($solicitud->id_cliente), 'id_solicitud' => Crypt::encrypt($solicitud->id), 'opcionvar' => $opcionvar ?? 0,'id_accion' => '2','report_option' => '1']) }}"
+                                            value="{{ $solicitud->id }}"
+                                            icon=""
+                                            class="button-accion button-accion-printer button-short"
+                                            data-test="printer-button"
+                                            >
+                                        </flux:menu.item>
+                                    </flux:menu.radio.group>
+                                    <flux:menu.radio.group>
+                                        <flux:menu.item
+                                            as="button"
+                                            type="submit"
+                                            href="{{ route('solicitud.edit', ['id_cliente' => Crypt::encrypt($solicitud->id_cliente), 'id_solicitud' => Crypt::encrypt($solicitud->id), 'opcionvar' => $opcionvar ?? 0,'id_accion' => '3']) }}"
+                                            name="delete"
+                                            value="{{ $solicitud->id }}"
+                                            icon=""
+                                            class="button-accion button-accion-delete button-short"
+                                            data-test="delete-button"
+                                        >
+                                        </flux:menu.item>
+                                    </flux:menu.radio.group>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+        </form>
+    </div>
+</flux:card>
+
