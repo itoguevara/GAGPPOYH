@@ -7,7 +7,7 @@
  
     <body >
         
-        <x-layouts::app :title="__('Guayana Productiva en')" class="layout-app">
+        <x-layouts::app :title="__('Guayana Productiva en Positivo')" :opcionvar="0 ?? 0" :solicituduser="$solicituduser ?? null" class="layout-app">
             <x-generic.header />   
             @auth <!--  Verificacion de la Autorizacion-->
                 <x-userauth.simpatizantes.bodydata :opcionvar="1 ?? 0" :solicituduser="$solicituduser ?? null"></x-userauth.simpatizantes.bodydata>

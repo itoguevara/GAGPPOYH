@@ -14,7 +14,7 @@
                     @else    
                         <flux:sidebar.group :heading="__('Acceso a Datos')" class="grid">
                             <flux:card class="card-login"> <!--  Etiquetas del Login-->
-                                <x-auth.login>  </x-auth.login>
+                                <x-auth.login  :opcionvar="$opcionvar ?? '0'">  </x-auth.login>
                             </flux:card>
                         </flux:sidebar.group>
                     @endauth

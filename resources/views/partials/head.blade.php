@@ -5,9 +5,9 @@
     {{ filled($title ?? null) ? $title.' - '.config('app.name', 'Guayana Productiva en Positivo') : config('app.name', 'Guayana Productiva en Positivo') }}
 </title>
 
-<link rel="icon" href="/favicon.ico" sizes="any">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" href="/LogoOriginal00.ico" sizes="any">
+<link rel="icon" href="/LogoOriginal00.ico" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/BiesurPeq.ico">
     <!-- Font Awesome -->
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 

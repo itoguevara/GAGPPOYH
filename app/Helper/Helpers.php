@@ -187,16 +187,16 @@ public static function GetDataObject(int $id_opcion_search, string $search_term 
                             ->paginate(20);
             break;
         case 11: // Solicitudes del Usuario Logeado
-            $recorddataobject = DB::table('tramitesconsulares.vwsolicitudes')
+            $recorddataobject = DB::table('militantes.vwsolicitudes')
                             ->distinct()
-                            ->select(['vwsolicitudes.id', 'vwsolicitudes.nro_sol', 'vwsolicitudes.fecha', 'vwsolicitudes.id_cliente', 'vwsolicitudes.cedula', 'vwsolicitudes.cliente', 'vwsolicitudes.id_tipo_sol', 'vwsolicitudes.tipo_sol', 'vwsolicitudes.observacion', 'vwsolicitudes.id_status', 'vwsolicitudes.status'])
+                            ->select(['vwsolicitudes.id', 'vwsolicitudes.nro_sol', 'vwsolicitudes.fecha', 'vwsolicitudes.id_simpatizante', 'vwsolicitudes.cedula', 'vwsolicitudes.cliente', 'vwsolicitudes.id_tipo_sol', 'vwsolicitudes.tipo_sol', 'vwsolicitudes.observacion', 'vwsolicitudes.id_status', 'vwsolicitudes.status'])
                             ->whereNotNull('vwsolicitudes.id')
-                            ->where('vwsolicitudes.id_cliente', '=', $id_search)
+                            ->where('vwsolicitudes.id_simpatizante', '=', $id_search)
                             ->orderBy('vwsolicitudes.nro_sol')
                             ->paginate(5);
             break;
         case 12: // Solicitudes por id de la solicitud
-            $recorddataobject = DB::table('tramitesconsulares.vwsolicitudes')
+            $recorddataobject = DB::table('militantes.vwsolicitudes')
                             ->distinct()
                             ->select(['vwsolicitudes.id', 'vwsolicitudes.nro_sol', 'vwsolicitudes.fecha', 'vwsolicitudes.id_cliente', 'vwsolicitudes.cedula', 'vwsolicitudes.cliente', 'vwsolicitudes.id_tipo_sol', 'vwsolicitudes.tipo_sol', 'vwsolicitudes.observacion', 'vwsolicitudes.id_status', 'vwsolicitudes.status'])
                             ->whereNotNull('vwsolicitudes.id')
@@ -205,7 +205,7 @@ public static function GetDataObject(int $id_opcion_search, string $search_term 
                             ->paginate(20);
                             break;
         case 13: // Tidpo Documentos
-            $recorddataobject = DB::table('tramitesconsulares.tipo_documentos')
+            $recorddataobject = DB::table('militantes.tipo_documentos')
                             ->distinct()
                             ->select(['tipo_documentos.id', 'tipo_documentos.descripcion'])
                             ->whereNotNull('tipo_documentos.id')

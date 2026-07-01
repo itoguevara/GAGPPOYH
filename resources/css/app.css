@@ -65,6 +65,227 @@ select:focus[data-flux-control] {
 /* \[:where(&)\]:size-4 {
     @apply size-4;
 } */
+/* ===== Cards ===== */  
+  /* Formato de Cards para el Login, Testimonios y el Slider de Inicio */
+  .card-login {
+  position: relative;
+  width: 250px; 
+  height: 100%;
+  background-color:  #ebe7e7;
+  align-items: center;  
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0,
+0, 0.1);
+} /* Fin Formato de Cards para el Login, Testimonios y el Slider de Inicio */
+
+.card-search { /* Formato de Cards para el Search Record */
+  position: relative;
+  width: 100%;
+  height:15%;
+  gap: 10px;
+  padding: auto;
+  margin-top: 10px;
+  background-color: #ebe7e7;
+  align-items: center;  
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  }  /* Fin Formato de Cards para el Search Record */
+
+.search-table { /* Formato de Cards para el Search Record */
+  width: 100%;
+  height:100%;
+  margin-top: 10px;
+  gap: 10px;
+  padding: auto;
+  background-color: #ebe7e7;
+  align-items: center;  
+border: 1px solid #494848;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(46, 45, 45, 0.5);
+}
+.search-table-rows { /* Formato de Cards para el Search Record */
+  border: 1px solid #969393; 
+  background-color:rgb(223, 20, 20); 
+  height: 10px;
+}
+
+/* ===== Fin de Cards ===== */ 
+.sidebar-principal {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #373c43;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0,0, 0.1);
+} 
+/* ===== Menu de Usuarios ===== */
+.user-menu {
+  position: relative;
+  margin: 0%;
+  background-color: #ebe7e7;
+  cursor: pointer;
+  border: 1px solid #494848;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(46, 45, 45, 0.5);
+}
+
+.user-menu-item{
+  display: flex;
+  align-items: left;
+  justify-content: left;
+  color:#373c43;
+}
+
+.user-menu:hover {
+  transition: background-image 0.3s ease-in-out; /* Transición suave al cambiar la imagen */
+  background-color: #ebe7e7;}
+
+ /* ===== Fin de Menu de Usuarios ===== */
+
+ /* Grupo de Botones de Acciones*/
+
+ .button-group {
+  display: flex;
+  gap: 10px; /* Espacio entre botones */
+  padding: 20px 0;
+  align-items: center;
+  justify-content: center; /* Centra el grupo de botones */
+  border: 1px solid #494848;
+}
+.button-group-button {
+  display: flex;
+  flex-direction: row;
+  gap: 8px; /* Espacio entre el ícono y el texto */
+  align-items: center;
+  justify-content: center;
+  
+}
+.button-accion {
+  align-items: center;
+  border-radius: 50%; /* Hace el círculo */  
+  background-size: cover; /* Cubre todo el div */
+  background-position: contain; /* Centra la imagen */
+  background-repeat: no-repeat; /* No repite la imagen */  
+  border: 1px solid #494848;
+  box-shadow: 0 4px 8px rgba(46, 45, 45, 0.5);
+}
+.button-accion:hover {
+  background-size: cover; /* Cubre todo el div */
+  background-position: contain; /* Centra la imagen */
+  background-repeat: no-repeat; /* No repite la imagen */  
+  transition: background-image 0.5s ease-in-out; /* Transición suave al cambiar la imagen */
+}
+.button-accion-menosparen {
+  background-image: url('../../public/Back/iconos/MenosPrentescoWhite.png'); /* Ruta de la imagen de eliminar parentesco */
+}
+.button-accion-menosparen:hover {
+  background-image: url('../../public/Back/iconos/MenosPrentescoBlack.png'); /* Ruta de la imagen de agregar parentesco */
+}
+
+.button-accion-masparen {
+  position: absolute;
+  margin-top: 0.5%;
+  margin-left: 0%;
+  background-image: url('../../public/Back/iconos/MasPrentescoWhite.png'); /* Ruta de la imagen de eliminar parentesco */
+}
+.button-accion-masparen:hover {
+  background-image: url('../../public/Back/iconos/MasPrentescoBlack.png'); /* Ruta de la imagen de agregar parentesco */
+}
+
+.button-accion-edit {
+  background-image: url('../../public/Back/iconos/editwhite.png'); /* Ruta de la imagen del logout */
+}
+.button-accion-edit:hover {
+  background-image: url('../../public/Back/iconos/editblack.png'); /* Ruta de la imagen del exit */
+}
+.button-accion-exit {
+  background-image: url('../../public/Back/iconos/exitwhite.png'); /* Ruta de la imagen del logout */
+}
+.button-accion-exit:hover {
+  background-image: url('../../public/Back/iconos/exitblack.png'); /* Ruta de la imagen del exit */
+}
+.button-accion-save {
+  background-image: url('../../public/Back/iconos/GuardarBlanco.png'); /* Ruta de la imagen del logout */
+}
+.button-accion-save:hover {
+  background-image: url('../../public/Back/iconos/GuardarNegro.png'); /* Ruta de la imagen del exit */
+}
+.button-accion-printer {
+  background-image: url('../../public/Back/iconos/PrinterWhite.png'); /* Ruta de la imagen del logout */
+}
+.button-accion-printer:hover {
+  background-image: url('../../public/Back/iconos/PrinterBlack.png'); /* Ruta de la imagen del print */
+}
+.button-accion-delete {
+  background-image: url('../../public/Back/iconos/DeleteWhite.png'); /* Ruta de la imagen del logout */
+}
+.button-accion-delete:hover {
+  background-image: url('../../public/Back/iconos/DeleteBlack.png'); /* Ruta de la imagen del delete */
+}
+.button-accion-search {
+  background-image: url('../../public/Back/iconos/SearchWhite.png'); /* Ruta de la imagen del logout */
+}
+.button-accion-search:hover {
+  background-image: url('../../public/Back/iconos/SearchBlack.png'); /* Ruta de la imagen del search */
+}
+.button-accion-cancel {
+  background-image: url('../../public/Back/iconos/CancelWhite.png'); /* Ruta de la imagen del logout */
+}
+.button-accion-cancel:hover {
+  background-image: url('../../public/Back/iconos/CancelBlack.png'); /* Ruta de la imagen del cancel */
+}
+
+
+.button-short{
+  width: 35px;
+  height: 35px;
+ }
+
+/* FIN Grupo de Botones de Acciones*/
+
+/* ===== Data Entry ===== */
+.data-entry {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* Crea dos columnas de igual tamaño */
+  gap : 10px;
+  padding: 20px 10px;
+  background-color: #ebe7e7;
+  align-items: center;
+  border: 1px solid#494848 ;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0,0, 0.1);
+}
+/* FIN de Data Entry */
+
+/* ===== Boton redondo de Inicio y Logout de sesion ===== */
+.boton-session {
+  cursor: pointer;
+  align-items: center;
+  border-radius: 50%; /* Hace el círculo */  
+  background-image: url('../../public/Back/iconos/logoutwhite.png'); /* Ruta de la imagen del logout */
+  background-size: cover; /* Cubre todo el div */
+  background-position: contain; /* Centra la imagen */
+  background-repeat: no-repeat; /* No repite la imagen */  
+  border: 1px solid #494848;
+  box-shadow: 0 4px 8px rgba(46, 45, 45, 0.5);
+}
+.boton-session-item{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.boton-session:hover {
+  background-image: url('../../public/Back/iconos/logoutblack.png'); /* Ruta de la imagen del logout */
+  background-size: cover; /* Cubre todo el div */
+  background-position: contain; /* Centra la imagen */
+  background-repeat: no-repeat; /* No repite la imagen */  
+  transition: background-image 0.3s ease-in-out; /* Transición suave al cambiar la imagen */}
+/* ===== Fin de Menu de Usuarios ===== */
+
 /* ===== Header ===== */
 .header-container {
   width: 100%;

@@ -21,12 +21,32 @@ use App\View\Components\userauth\tcsolicitud;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Request;
-
+/*
 Route::view('/', 'home')->name('home');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::view('home', 'home')->name('homeverified');
 });
+*/
+Route::get('/', function ($opcionvar = '0', $solicituduser= null) {
+    
+    if (Auth::check()== true) {
+        $id_data_search = app()->call('App\Http\Controllers\userauth\usuadatactrl@GetDataUser')->first()->id_persona ?? null;
+        $clientesdata = app()->call('App\Http\Controllers\simpatizantes\simpatizanteCtrl@GetDatasimpatizante', ['id_data_search' => $id_data_search, 'id_opcion' => 1]);    
+        // Buscar Datos de las Solicitudes del usuario
+        $solicituduser = PublicFunctions::GetDataObject(11, '', $clientesdata[0]->id_clienteempre ?? -1);
+    }
+    return view('Home', compact('opcionvar', 'solicituduser'));
+})->name('home')->where('opcionvar', '0|1|2|3|4|5|6|7|8|9');
+
+Route::post('/', function ($opcionvar = '0', $solicituduser = null) {
+    return view('Home', compact('opcionvar', 'solicituduser'));    
+})->name('home')->where('opcionvar', '0|1|2|3|4|5|6|7|8|9');
+
+Route::get('/logout', function () {
+    Auth::logout();
+    return redirect()->route('login');
+})->name('logout');
 
 Route::get('/solicitud/{opcionvar}', [solicitudctrl::class, 'show'])->middleware('auth')->where('opcionvar', '0|1|2|3|4|5|6|7|8|9')->name('solicitud') ;
 Route::post('/solicitud/{opcionvar}', [solicitudctrl::class, 'store'])->middleware('auth')->where('opcionvar', '0|1|2|3|4|5|6|7|8|9')->name('solicitud.store');
