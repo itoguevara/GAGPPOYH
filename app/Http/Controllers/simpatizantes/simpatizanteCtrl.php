@@ -37,41 +37,41 @@ public $simpatizantesdata;
  function GetDatasimpatizante(int $id_data_search, int $id_opcion)   
          {
             if ($id_opcion == 0) { // Buscar simpatizante por ID
-                $simpatizantesdata = DB::table('administracion.vwsimpatizantes')
+                $simpatizantesdata = DB::table('militantes.vwsimpatizantes')
                      ->distinct()
-                     ->select(['vwsimpatizantes.id_simpatizanteempre', 'vwsimpatizantes.cedula', 'vwsimpatizantes.nombre', 'vwsimpatizantes.apellido', 'vwsimpatizantes.fec_nac', 'vwsimpatizantes.direccion','vwsimpatizantes.telefono','vwsimpatizantes.emails'])                     
-                     ->where('vwsimpatizantes.id_simpatizanteempre', '=', $id_data_search)
+                     ->select(['vwsimpatizantes.id', 'vwsimpatizantes.cedula', 'vwsimpatizantes.nombre', 'vwsimpatizantes.apellido', 'vwsimpatizantes.fec_nac', 'vwsimpatizantes.direccion','vwsimpatizantes.telefono','vwsimpatizantes.emails'])                     
+                     ->where('vwsimpatizantes.id', '=', $id_data_search)
                      ->get();
                  return $simpatizantesdata;    
              
             } elseif ($id_opcion == 1) { // Buscar simpatizante por id de Persona
            
-                $simpatizantesdata = DB::table('administracion.vwsimpatizantes')
+                $simpatizantesdata = DB::table('militantes.vwsimpatizantes')
                      ->distinct()
-                     ->select(['vwsimpatizantes.id_simpatizanteempre', 'vwsimpatizantes.cedula', 'vwsimpatizantes.nombre', 'vwsimpatizantes.apellido', 'vwsimpatizantes.fec_nac', 'vwsimpatizantes.direccion','vwsimpatizantes.telefono','vwsimpatizantes.emails'])                     
+                     ->select(['vwsimpatizantes.id', 'vwsimpatizantes.cedula', 'vwsimpatizantes.nombre', 'vwsimpatizantes.apellido', 'vwsimpatizantes.fec_nac', 'vwsimpatizantes.direccion','vwsimpatizantes.telefono','vwsimpatizantes.emails'])                     
                      ->where('vwsimpatizantes.id_persona', '=', $id_data_search)
                      ->get();
                  return $simpatizantesdata;
 
             } elseif ($id_opcion == 2) { // Buscar simpatizante por cédula
-                 $simpatizantesdata = DB::table('administracion.vwsimpatizantes')
+                 $simpatizantesdata = DB::table('militantes.vwsimpatizantes')
                      ->distinct()
-                     ->select(['vwsimpatizantes.id_simpatizanteempre', 'vwsimpatizantes.cedula', 'vwsimpatizantes.nombre', 'vwsimpatizantes.apellido', 'vwsimpatizantes.fec_nac', 'vwsimpatizantes.direccion','vwsimpatizantes.telefono','vwsimpatizantes.emails'])                     
+                     ->select(['vwsimpatizantes.id', 'vwsimpatizantes.cedula', 'vwsimpatizantes.nombre', 'vwsimpatizantes.apellido', 'vwsimpatizantes.fec_nac', 'vwsimpatizantes.direccion','vwsimpatizantes.telefono','vwsimpatizantes.emails'])                     
                      ->where('vwsimpatizantes.cedula', '=', $id_data_search)
                      ->get();
                  return $simpatizantesdata;    
             } elseif ($id_opcion == 3) { // Buscar simpatizante por nombre
-                $simpatizantesdata = DB::table('administracion.vwsimpatizantes')
+                $simpatizantesdata = DB::table('militantes.vwsimpatizantes')
                      ->distinct()
-                     ->select(['vwsimpatizantes.id_simpatizanteempre', 'vwsimpatizantes.cedula', 'vwsimpatizantes.nombre', 'vwsimpatizantes.apellido', 'vwsimpatizantes.fec_nac', 'vwsimpatizantes.direccion','vwsimpatizantes.telefono','vwsimpatizantes.emails'])                     
+                     ->select(['vwsimpatizantes.id', 'vwsimpatizantes.cedula', 'vwsimpatizantes.nombre', 'vwsimpatizantes.apellido', 'vwsimpatizantes.fec_nac', 'vwsimpatizantes.direccion','vwsimpatizantes.telefono','vwsimpatizantes.emails'])                     
                      ->where('vwsimpatizantes.nombre', 'like', "%$id_data_search%"       )
                      ->get();
                  return $simpatizantesdata;    
    
             } elseif ($id_opcion == 4) { // Buscar simpatizante por apellido
-                $simpatizantesdata = DB::table('administracion.vwsimpatizantes')
+                $simpatizantesdata = DB::table('militantes.vwsimpatizantes')
                      ->distinct()
-                     ->select(['vwsimpatizantes.id_simpatizanteempre', 'vwsimpatizantes.cedula', 'vwsimpatizantes.nombre', 'vwsimpatizantes.apellido', 'vwsimpatizantes.fec_nac', 'vwsimpatizantes.direccion','vwsimpatizantes.telefono','vwsimpatizantes.emails'])                     
+                     ->select(['vwsimpatizantes.id', 'vwsimpatizantes.cedula', 'vwsimpatizantes.nombre', 'vwsimpatizantes.apellido', 'vwsimpatizantes.fec_nac', 'vwsimpatizantes.direccion','vwsimpatizantes.telefono','vwsimpatizantes.emails'])                     
                       ->where('vwsimpatizantes.apellido', 'like', "%$id_data_search%")
                      ->get();
                  return $simpatizantesdata;

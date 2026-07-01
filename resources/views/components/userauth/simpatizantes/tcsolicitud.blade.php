@@ -7,7 +7,10 @@
     } else {
         $swi_solnew = true;
     }
-    $clientesdata = session('clientesdata') ?? [];    
+    $recordsimpatizante = session('recordsimpatizante') ?? [];   
+    $recordtipopersona = session('recordtipopersona') ?? []; 
+    $tiposolicitud = session('tiposolicitud') ?? [];
+    $recordstatusconfirmacion = session('recordstatusconfirmacion') ?? [];
 @endphp
 
 <div>    
@@ -119,7 +122,7 @@
                     <flux:label>Status</flux:label>
                     <flux:description>Status del procesamiento de la solicitud</flux:description>
                     <flux:select required readonly wire:model="id_status" placeholder="Status." >
-                        @forelse ($status as $statusdoc)
+                        @forelse ($recordstatusconfirmacion as $statusdoc)
                             <flux:select.option value="{{ $statusdoc->id }}">{{ $statusdoc->descripcion }}</flux:select.option>
                         @empty
                             <flux:select.option value="">No hay status disponibles</flux:select.option>
@@ -136,7 +139,7 @@
                     </flux:field>
             </div>
         </flux:card>
-        <x-userauth.solicitud.tcsolfami :opcionvar="$opcionvar ?? 0" :clientesdata="$clientesdata ?? null" :id_solicitud="$id_solicitud ?? '-1'" :swi_solnew="$swi_solnew ?? false"></x-userauth.solicitud.tcsolfami>
+        
         <div class="button-group-button">
             <flux:menu.radio.group>
                 <flux:menu.item

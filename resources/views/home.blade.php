@@ -7,16 +7,14 @@
  
     <body >
         
-        <x-layouts::app :title="__('Angelica Agreda - Procesamientos de Datos')" class="layout-app">
+        <x-layouts::app :title="__('Guayana Productiva en')" class="layout-app">
             <x-generic.header />   
             @auth <!--  Verificacion de la Autorizacion-->
                 <x-userauth.simpatizantes.bodydata :opcionvar="1 ?? 0" :solicituduser="$solicituduser ?? null"></x-userauth.simpatizantes.bodydata>
             @else
                 <flux:separator />
                 <x-generic.bodydata :opcionvar="0 ?? 0" :solicituduser="$solicituduser ?? null"></x-generic.bodydata> 
-                <div class="div-testimonios">
-                    <x-generic.testimonios/>
-                </div>
+
             @endauth
             <x-generic.footer />           
         </x-layouts::app>

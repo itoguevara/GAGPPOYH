@@ -1,7 +1,7 @@
 
 <div class="wrapper">
     
-    <footer class="footer-dark   bg-zinc-50 dark:bg-zinc-900 p-6 rounded-lg border border-zinc-200 dark:border-zinc-700 mt-6">
+    <footer class="footer-dark   bg-zinc-50 color-blue-600 p-6 rounded-lg border border-zinc-200 dark:border-zinc-700 mt-6">
         <div class="footer-container">
             <div class="footer-column">
                 <h4>Quienes Somos</h4>
