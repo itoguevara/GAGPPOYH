@@ -52,7 +52,6 @@
         <flux:text class="text-center text-lg text-gray-600 dark:text-gray-400">
             “GUAYANA  ES  EL GRAN POLO DE DESARROLLO DE VENEZUELA” 
         </flux:text>
-        <p >"Capacidad de disponibilidad energetica de la mano con la capacidad de infraestructura y servicios básicos industriales. "</p>
         <flux:separator></flux:separator>
         
         <div class="div-testimonios">
