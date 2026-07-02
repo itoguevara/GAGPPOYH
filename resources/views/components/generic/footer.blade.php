@@ -5,13 +5,8 @@
         <div class="footer-container">
             <div class="footer-column">
                 <h4>Quienes Somos</h4>
-                <flux:text class="footer-dark   bg-zinc-50 dark:bg-zinc-900 p-6  mt-6">Abogada-Magister Especialista en migración legal y organizada.
-                    Trámites migratorios:
-                    🇪🇸 España
-                    🇺🇸 Estados Unidos
-                    🇻🇪 Venezuela
-                    🇪🇨 Ecuador
-                    🇪🇺 Europa.
+                <flux:text class="footer-dark   bg-zinc-50 dark:bg-zinc-900 p-6  mt-6">
+                    . Lic. Yorman Hernández @yormanrhs Representante #empresarial de Guayana.
                 </flux:text>
             </div>
             <div class="footer-column">
@@ -26,9 +21,6 @@
                 <h4>Contact</h4>
                 <p>Email: example@example.com</p>
             </div>
-                 <div class="footer-logo">
-                    <img src="../../../imgweb/YH00.jpeg" alt="Guayana Productiva en Positivo" width="180" height="100">
-                </div>
             <div class="col item social">
                 <a href="#"><i class="fa-brands fa-instagram"></i></a>
                 <a href="#"><i class="fa-brands fa-twitter"></i></a>
