@@ -63,4 +63,7 @@
             </div>
         @endif
     </div>
+  <div class="absolute left-0 top-155 w-full" >
+    <img src="../../../imgweb/EdoBolivar.png" alt="Guayana Productiva en Positivo" width="500" height="300">
+  </div>        
 </x-layouts::auth>

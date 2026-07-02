@@ -26,6 +26,9 @@
                 <h4>Contact</h4>
                 <p>Email: example@example.com</p>
             </div>
+                 <div class="footer-logo">
+                    <img src="../../../imgweb/YH00.jpeg" alt="Guayana Productiva en Positivo" width="180" height="100">
+                </div>
             <div class="col item social">
                 <a href="#"><i class="fa-brands fa-instagram"></i></a>
                 <a href="#"><i class="fa-brands fa-twitter"></i></a>
@@ -33,8 +36,8 @@
                 <a href="#"><i class="fa-brands fa-facebook"></i></a>
             </div>  
             
-
+   
         </div>
-        
+   
     </footer>
 </div>
