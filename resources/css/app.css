@@ -69,13 +69,13 @@ select:focus[data-flux-control] {
   /* Formato de Cards para el Login, Testimonios y el Slider de Inicio */
   .card-login {
   position: relative;
+  margin-left: 0%;
   width: 250px; 
   height: 100%;
-  background-color:  #ebe7e7;
-  align-items: center;  
+  background-color:  #acacac;
+  align-items:left;  
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0,
-0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0,0, 0.1);
 } /* Fin Formato de Cards para el Login, Testimonios y el Slider de Inicio */
 
 .card-search { /* Formato de Cards para el Search Record */
