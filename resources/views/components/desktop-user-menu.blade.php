@@ -1,4 +1,9 @@
-<div class="flex items-center gap-2 px-1 py-1.5 text-start text-sm">
+
+  <div class="flex items-center gap-2 px-1 py-1.5 text-start text-sm">
+    <img class="align-middle w-30 h-30 ml-6.5" src="../../../imgweb/logoGPP.png" alt="Guayana Productiva en Positivo" width="100" height="60">
+  </div>  
+  <div class="">
+        <div class="flex items-center gap-2 px-1 py-1.5 text-start text-sm">
             <flux:avatar
                 :name="auth()->user()->name"
                 :initials="auth()->user()->initials()"
@@ -35,7 +40,7 @@
         </flux:sidebar.nav>
         <flux:separator />
         <div class="px-1 py-1.5">
-            <form method="POST" action="{{ route('logout') }}" class="boton-session-item">
+          <form method="POST" action="{{ route('logout') }}" class="boton-session-item">
                 @csrf
                 <flux:menu.item 
                     as="button"
@@ -46,7 +51,13 @@
                     position="center"
                 >
                   </flux:menu.item>
+
             </form>
         </div>
 
-
+            
+    </div>
+    
+  <div class="flex items-center gap-2 px-1 py-1.5 text-start text-sm">
+    <img class="align-middle w-30 h-30 ml-6.5" src="../../../imgweb/EdoBolivar.png" alt="Guayana Productiva en Positivo">
+  </div> 

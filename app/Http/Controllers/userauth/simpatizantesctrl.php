@@ -1,18 +1,21 @@
 <?php
 
 
-namespace App\Http\Controllers\simpatizantes;
+namespace App\Http\Controllers\userauth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\userauth\simpatizantesmdl;
-
+use App\Models\userauth\simpatizantemdl;
+use Illuminate\Support\Facades\Crypt;
+use PublicFunctions;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Auth;
 
-class simpatizanteCtrl extends Controller
+class simpatizantesctrl extends Controller
+      
 {
 public $simpatizantesdata;
+public $FunctionsPublic = null;
     /**
      * Display a listing of the resource.
      */
@@ -27,6 +30,7 @@ public $simpatizantesdata;
     public function store(Request $request,int $opcionvar)
     {
         $simpatizantesdata = $request->all();
+
         return redirect()->route('solicitud', ['opcionvar' => $opcionvar])->with('success', 'Solicitud creada exitosamente.');
         // Obtener un dato específico
     }
@@ -36,7 +40,14 @@ public $simpatizantesdata;
      */
  function GetDatasimpatizante(int $id_data_search, int $id_opcion)   
          {
-            if ($id_opcion == 0) { // Buscar simpatizante por ID
+            if ($id_opcion == -1) { // Buscar simpatizante por ID
+                $simpatizantesdata = DB::table('militantes.vwsimpatizantes')
+                     ->distinct()
+                     ->select(['vwsimpatizantes.id', 'vwsimpatizantes.cedula', 'vwsimpatizantes.nombre', 'vwsimpatizantes.apellido', 'vwsimpatizantes.fec_nac', 'vwsimpatizantes.direccion','vwsimpatizantes.telefono','vwsimpatizantes.emails','vwsimpatizantes.id_status'])                     
+                     ->orderBy('vwsimpatizantes.id', 'asc')
+                     ->paginate(5);
+                 return $simpatizantesdata;    
+            } elseif ($id_opcion == 0) { // Buscar simpatizante por ID
                 $simpatizantesdata = DB::table('militantes.vwsimpatizantes')
                      ->distinct()
                      ->select(['vwsimpatizantes.id', 'vwsimpatizantes.cedula', 'vwsimpatizantes.nombre', 'vwsimpatizantes.apellido', 'vwsimpatizantes.fec_nac', 'vwsimpatizantes.direccion','vwsimpatizantes.telefono','vwsimpatizantes.emails'])                     
@@ -83,11 +94,32 @@ public $simpatizantesdata;
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(simpatizantemdl $simpatizantesmdl)
-    {
-        //
-    }
-
+    public function edit(simpatizantemdl $simpatizantesmdl, Request $request)
+   {
+     $FunctionsPublic = new PublicFunctions();
+     $datos = $request->all();
+    $_SERVER['REQUEST_METHOD'] === 'POST' ? $datos = $request->all() : $datos = $request->query();
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id_simpatizante = $datos['id_simpatizante'] ?? -1;
+            $simpatizantesmdl = simpatizantemdl::find($id_simpatizante);
+            if (!$simpatizantesmdl) {
+                return redirect()->back()->with('error', 'Simpatizante no encontrado.');
+            }
+            $simpatizantesmdl->fill($datos);
+            $simpatizantesmdl->save();  
+            return redirect()->back()->with('success', 'Simpatizante actualizado exitosamente.');
+         } elseif ($_SERVER['REQUEST_METHOD'] === 'GET') {
+            
+            dd($datos);
+            $FunctionsPublic->id_simpatizante = Crypt::decrypt($datos['id'] ?? -1);
+            $simpatizantesmdl = simpatizantemdl::find($FunctionsPublic->id_simpatizante);
+            if (!$simpatizantesmdl) {
+                return redirect()->back()->with('error', 'Simpatizante no encontrado.');
+            }
+            return view('userauth.simpatizantes.edit', compact('simpatizantesmdl'));
+        }
+    }                       
+     //
     /**
      * Update the specified resource in storage.
      */

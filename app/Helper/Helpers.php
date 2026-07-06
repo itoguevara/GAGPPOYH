@@ -1,4 +1,6 @@
 <?php
+
+use App\Models\userauth\simpatizantemdl;
 use Illuminate\Support\Facades\DB;
 
 class PublicFunctions
@@ -13,7 +15,8 @@ class PublicFunctions
     public $nro_sol = 'SOL-0000';
     /** Variables Publicas de Registros de Tipos */
     public $recordsimpatizante = null;
-    public $recordinteresados = null;
+    public $recordsimpatizantes = null;
+    public $tiposimpatizante = null; // Variable para almacenar registros de Tipo de Simpatizantes
     public $tiposolicitud = null; // Variable para almacenar registros de Tipo de Solicitud
     public $recordtipodirtemail = null; // Variable para almacenar registros de Tipo de Direccion/Telefono/Email
     public $recordnacionalidad = null; // Variable para almacenar registros de Nacionalidad
@@ -34,15 +37,17 @@ class PublicFunctions
     }
     public static function CargaInicialDataRecord(){
         $id_persona_user = app()->call('App\Http\Controllers\userauth\usuadatactrl@GetDataUser')->first()->id_persona ?? null;
-        $recordsimpatizante = app()->call('App\Http\Controllers\simpatizantes\simpatizanteCtrl@GetDatasimpatizante', ['id_data_search' => $id_persona_user, 'id_opcion' => 1]);    
+        $recordsimpatizante = app()->call('App\Http\Controllers\userauth\Simpatizantesctrl@GetDatasimpatizante', ['id_data_search' => $id_persona_user, 'id_opcion' => 1]);    
+        $recordsimpatizantes = app()->call('App\Http\Controllers\userauth\Simpatizantesctrl@GetDatasimpatizante', ['id_data_search' => $id_persona_user, 'id_opcion' => -1]);    
         session(['recordstatus' => PublicFunctions::GetDataObject(-1,'',-1)]); // Ejemplo de uso de sesión para almacenar Los Datos del Status de las Solicitudes
         session(['recordstatusconfirmacion' => PublicFunctions::GetDataObject(1,'',-1)]); // Ejemplo de uso de sesión para almacenar Los Datos del Status de Confirmación de las Solicitudes
         session(['recordempresa' => PublicFunctions::GetDataObject(14,'',-1)]); // Ejemplo de uso de sesión para almacenar Los Datos de la Empresa
         session(['recordcliente' => PublicFunctions::GetDataObject(15,'',-1)]); // Ejemplo de uso de sesión para almacenar Los Datos del Cliente
         session(['id_persona_user' => $id_persona_user ?? -1]); // Ejemplo de uso de sesión para almacenar id de la Persona del usuario Activo
-        session(['id_simpatizante' => $recordsimpatizante[0]->id_simpatizante ?? -1]); // Ejemplo de uso de sesión para almacenar Los Datos del Simpatizante
+        session(['id_simpatizante' => $recordsimpatizante[0]->id ?? -1]); // Ejemplo de uso de sesión para almacenar Los Datos del Simpatizante
+        
         session(['recordtipopersona' => PublicFunctions::GetDataObject(1,'',-1)]); // Ejemplo de uso de sesión para almacenar Los Datos del Tipo de Persona
-        session(['tiposolicitud' => PublicFunctions::GetDataObject(9,'',-1)]); // Ejemplo de uso de sesión para almacenar Los Datos del Tipo de Solicitud
+        session(['tiposimpatizante' => PublicFunctions::GetDataObject(22,'',-1)]); // Ejemplo de uso de sesión para almacenar Los Datos del Tipo de Simpatizante
 
     }
 
@@ -75,7 +80,7 @@ public static function GetDataObject(int $id_opcion_search, string $search_term 
                             ->whereNotNull('tblstatus.id')
                             ->where('tblstatus.id', '>', 0)
                             ->orderBy('tblstatus.descripcion')
-                            ->get();  
+                            ->paginate(20);
             break;
         
         case 0:  // Buscar Status
@@ -286,6 +291,15 @@ public static function GetDataObject(int $id_opcion_search, string $search_term 
                             ->orderBy('tipo_gradoinstruccion.id')
                             ->get();  
             break;            
+        case 22: // Tipo de Simpatizantes       
+            $recorddataobject = DB::table('militantes.tipo_simpatizante')
+                            ->distinct()
+                            ->select(['tipo_simpatizante.id', 'tipo_simpatizante.descripcion'])
+                            ->whereNotNull('tipo_simpatizante.id')
+                            ->where('tipo_simpatizante.id', '>', 0)
+                            ->orderBy('tipo_simpatizante.descripcion')
+                            ->get();
+            break;                         
 
         default:
             $recorddataobject = null; // O manejar el caso de opción no válida

@@ -21,6 +21,9 @@
                 <h4>Contact</h4>
                 <p>Email: example@example.com</p>
             </div>
+            <div class="footer-column">
+                <img class="align-middle w-35 h-50 ml-6.5" src="../../../imgweb/YH00.jpeg" alt="Guayana Productiva en Positivo">
+            </div>            
             <div class="col item social">
                 <a href="#"><i class="fa-brands fa-instagram"></i></a>
                 <a href="#"><i class="fa-brands fa-twitter"></i></a>

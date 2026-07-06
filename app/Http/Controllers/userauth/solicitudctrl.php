@@ -304,7 +304,7 @@ class solicitudctrl extends Controller
                 $id_famisol = $datos['id_famisol'] ?? -1;
                 $famisoltmpmdl = famisoltmpmdl::findOrFail($id_famisol);
                 $famisoltmpmdl->delete();
-                //dd(get_defined_vars()); 
+                
                  return redirect()->route('solicitud', compact('opcionvar','famisoltmpmdl'))->with('success', $mesage);                         
                 
             }

@@ -1,17 +1,19 @@
 @php
-    $id_cliente = $attributes->get('clientesdata')[0]->id_clienteempre ?? -1;
+
+    $id_simpatizante = session(['id_simpatizante']) ?? -1;
     $status = session('recordstatus') ?? [];
     $tiposolicitud = session('recordtiposolicitud') ?? [];
+    $tiposimpatizante = session('recordtiposimpatizante') ?? [];
 @endphp
-<form method="get" action="{{ route('solicitud.search',['opcionvar' => $opcionvar ?? 0]) }}" class="flex flex-col gap-6">
+<form method="get" action="{{ route('simpatizantes.search',['opcionvar' => $opcionvar ?? 0]) }}" class="flex flex-col gap-6">
     @csrf
     <flux:table container:class="search-table" >
         <flux:table.rows >
             <flux:table.row >
                 <flux:table.cell class="align-middle text-center mt-0" colspan="7">
                     <flux:radio.group wire:model="search_field" variant="segmented" size="sm" label="Buscar En :"  name="search_field">
-                        <flux:radio value="0" label="Numero" icon="wrench" checked />
-                        <flux:radio value="1" label="Observación" icon="document-text" />
+                        <flux:radio value="0" label="Nombres" icon="wrench" checked />
+                        <flux:radio value="1" label="Apellidos" icon="document-text" />
                         <flux:radio value="2" label="Fecha" icon="calendar" />
                         <flux:radio value="3" label="Tipo" icon="tag" />
                         <flux:radio value="4" label="Status" icon="check-circle" />
@@ -22,8 +24,8 @@
                 <flux:table.cell class="align-middle text-center">
                     <flux:label>Tipo de Tramite</flux:label>
                         <flux:select name="id_tipo_sol" wire:model="id_tipo_sol" placeholder="Tipo de Solicitud." >
-                            @forelse ($tiposolicitud as $tiposol)
-                                <flux:select.option value="{{ $tiposol->id }}">{{ $tiposol->descripcion }}</flux:select.option>
+                            @forelse ($tiposimpatizante as $tiposimpat)
+                                <flux:select.option value="{{ $tiposimpat->id }}">{{ $tiposimpat->descripcion }}</flux:select.option>
                             @empty
                                 <flux:select.option value="">No hay tipos de solicitud disponibles</flux:select.option>
                             @endforelse
@@ -110,7 +112,7 @@
         </flux:table.rows>
     </flux:table>
 
-    <div><input type="hidden" name="id_cliente" value="{{$id_cliente}}"></div >
+    <div><input type="hidden" name="id_simpatizante" value="{{$id_simpatizante}}"></div >
 </form>
 
 

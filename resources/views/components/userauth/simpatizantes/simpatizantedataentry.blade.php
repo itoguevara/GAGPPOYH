@@ -1,4 +1,3 @@
-
 @props(['opcionvar' => 'opcionvar'])
 @php
 dd(get_defined_vars());
