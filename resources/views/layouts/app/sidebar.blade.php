@@ -1,9 +1,9 @@
 <flux:sidebar sticky collapsible="mobile"  class="sidebar-principal" :heading="__('Menu')">
             <flux:sidebar.nav>
                 @php $RutaName = Route::currentRouteName();
-   
+
                  @endphp
-                @if($RutaName == 'home' or $RutaName == 'solicitud' or $RutaName == 'solicitud.search' or $RutaName == 'solicitud.edit' or $RutaName == 'solicitud.store' )
+                @if($RutaName == 'home' or $RutaName == 'simpatizante' or $RutaName == 'simpatizante.search' or $RutaName == 'simpatizante.edit' or $RutaName == 'simpatizante.store' )
                     @auth
                              
                     <flux:sidebar.group :heading="__('Opciones del Usuario')" class="grid" >

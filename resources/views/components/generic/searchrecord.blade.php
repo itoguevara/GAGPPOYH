@@ -5,7 +5,7 @@
     $tiposolicitud = session('recordtiposolicitud') ?? [];
     $tiposimpatizante = session('recordtiposimpatizante') ?? [];
 @endphp
-<form method="get" action="{{ route('simpatizantes.search',['opcionvar' => $opcionvar ?? 0]) }}" class="flex flex-col gap-6">
+<form method="get" action="{{ route('simpatizante.search',['opcionvar' => $opcionvar ?? 0]) }}" class="flex flex-col gap-6">
     @csrf
     <flux:table container:class="search-table" >
         <flux:table.rows >

@@ -109,9 +109,40 @@ public $FunctionsPublic = null;
             $simpatizantesmdl->save();  
             return redirect()->back()->with('success', 'Simpatizante actualizado exitosamente.');
          } elseif ($_SERVER['REQUEST_METHOD'] === 'GET') {
-            
-            dd($datos);
             $FunctionsPublic->id_simpatizante = Crypt::decrypt($datos['id'] ?? -1);
+            $FunctionsPublic->id_accion = $datos['id_accion'] ?? -1;    
+            $message = '';
+            if ($FunctionsPublic->id_simpatizante> 0) {
+                if ($FunctionsPublic->id_accion == 1) {
+                    $opcionvar = 2; // Establecer opción para edición
+                    $id_simpatizante = $FunctionsPublic->id_simpatizante;
+                    $recordsimpatizante = $FunctionsPublic->GetDataObject(15, '', $id_simpatizante) ?? -1;
+                    session()->put('recordsimpatizante', $recordsimpatizante,false);
+                    return view('home', compact('recordsimpatizante', 'opcionvar','id_simpatizante'));                         
+                } elseif ($FunctionsPublic->id_accion == 2) { // Imprimir Solicitud
+                    $FunctionsPublic->report_option = $datos['report_option'] ?? 0;  
+                    $message = 'Función de impresión no implementada aún.';
+                    return redirect()->route('solicitud.report', ['id_solicitud'=>Crypt::encrypt($FunctionsPublic->id_solicitud),'report_option' => Crypt::encrypt($FunctionsPublic->report_option),'id_cliente' => Crypt::encrypt($FunctionsPublic->id_cliente)])->with('success', $message);
+                } elseif ($FunctionsPublic->id_accion == 3) { // Eliminar Solicitud
+                    $solicitud = solicitudmdl::findOrFail($FunctionsPublic->id_solicitud);
+                    $solicitud->id_usercreator = Auth::user()->id ?? -1;
+                    $solicitud->id_status = 2; // Establecer el estado como "eliminado" (puedes usar un valor específico para esto)
+                    $solicitud->save();
+                    $opcionvar = 0; // Establecer opción para Listar todas las Solicitudes del Cliente
+                    $message = 'Solicitud eliminada exitosamente.';
+                    $FunctionsPublic->solicituduser = $FunctionsPublic->GetDataObject(11, '', $FunctionsPublic->id_cliente) ?? -1;
+                    $solicituduser = $FunctionsPublic->solicituduser;
+                    return redirect()->route('home', ['opcionvar' => $opcionvar, 'solicituduser' => $FunctionsPublic->solicituduser ?? null,'id_cliente' => $FunctionsPublic->id_cliente])->with('success', $message);
+                } else {
+                    $message = 'Accion no permitida para Actualizacion.';
+                }
+            } else {
+                $message = 'Simpatizante no encontrado.';
+            }   
+
+
+
+            dd($datos);
             $simpatizantesmdl = simpatizantemdl::find($FunctionsPublic->id_simpatizante);
             if (!$simpatizantesmdl) {
                 return redirect()->back()->with('error', 'Simpatizante no encontrado.');

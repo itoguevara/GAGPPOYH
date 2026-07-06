@@ -1,3 +1,8 @@
+@php
+    $opcionvar = $opcionvar ?? 0;
+    $recordsimpatizante = $recordsimpatizante ?? null;
+    $recordsimpatizantes = $recordsimpatizantes ?? null;
+@endphp
 
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="dark">
@@ -10,11 +15,7 @@
         <x-layouts::app :title="__('Guayana Productiva en Positivo')" :opcionvar="0 ?? 0" :solicituduser="$solicituduser ?? null" class="layout-app">
             <x-generic.header />   
             @auth <!--  Verificacion de la Autorizacion-->
-            @php
-                $opcionvar = 1 ?? 0;
-                $recordsimpatizantes = $recordsimpatizantes ?? null;
-            @endphp
-                <x-userauth.bodydata :opcionvar="1 ?? 0" :recordsimpatizantes="$recordsimpatizantes ?? null"></x-userauth.bodydata>
+                <x-userauth.bodydata :opcionvar="$opcionvar ?? 0" :recordsimpatizante="$recordsimpatizante ?? null" :recordsimpatizantes="$recordsimpatizantes ?? null"></x-userauth.bodydata>
             @else
                 <flux:separator />
                 <x-generic.bodydata :opcionvar="0 ?? 0" :recordsimpatizantes="$recordsimpatizantes ?? null"></x-generic.bodydata> 

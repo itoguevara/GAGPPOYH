@@ -1,27 +1,27 @@
-@props(['opcionvar' => 'opcionvar'])
 @php
-dd(get_defined_vars());
-    $id_solicitud = $attributes->get('id_solicitud') ?? '-1';
-    if ($id_solicitud != '-1') {
+    
+    $opcionvar = $attributes->get('opcionvar') ?? '-1';
+    $recordsimpatizante = session('recordsimpatizante') ?? [];   
+    $id_simpatizante = $recordsimpatizante[0]->id ?? '-1';
+    if ($id_simpatizante != '-1') {
         $swi_solnew = false;
     } else {
         $swi_solnew = true;
     }
-    $recordsimpatizante = session('recordsimpatizante') ?? [];   
     $recordtipopersona = session('recordtipopersona') ?? []; 
     $tiposolicitud = session('tiposolicitud') ?? [];
     $recordstatusconfirmacion = session('recordstatusconfirmacion') ?? [];
 @endphp
 
 <div>    
-    <form method="POST" action="{{ route('solicitud.store',['opcionvar' => $opcionvar]) }}" class="flex flex-col gap-6">
+    <form method="POST" action="{{ route('simpatizante.store',['opcionvar' => $opcionvar]) }}" class="flex flex-col gap-6">
     @csrf
         <flux:card class="space-y-6">
             <div>
-                <flux:heading size="xl">Ingreso de Solicitud de Tramites Consulares</flux:heading>
+                <flux:heading size="xl">Ingreso de Solicitud de Interesados</flux:heading>
                 <flux:text class="mt-2">Por favor, llene el formulario de Datos Para procesar su solicitud</flux:text>
             </div>
-            <div><flux:heading size="lg">Datos del Cliente</flux:heading></div>
+            <div><flux:heading size="lg">Datos del Simpatizante</flux:heading></div>
             <input type="hidden" name="id_cliente" value="{{ $clientesdata[0]->id_clienteempre ?? '-1' }}">
             <div class="data-entry">
                 <div class="col-span-1">

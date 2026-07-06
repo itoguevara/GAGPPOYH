@@ -49,10 +49,10 @@ Route::get('/logout', function () {
 })->name('logout');
 
 Route::get('/simpatizante/{opcionvar}', [simpatizantesctrl::class, 'show'])->middleware('auth')->where('opcionvar', '0|1|2|3|4|5|6|7|8|9')->name('simpatizantes') ;
-Route::post('/simpatizante/{opcionvar}', [simpatizantesctrl::class, 'store'])->middleware('auth')->where('opcionvar', '0|1|2|3|4|5|6|7|8|9')->name('simpatizantes.store');
-Route::get('/simpatizante/search/{opcionvar}', [simpatizantesctrl::class,'search'])->middleware('auth')->where('opcionvar', '0|1|2|3|4|5|6|7|8|9')->name('simpatizantes.search') ;
-Route::get('/simpatizante/edit}', [simpatizantesctrl::class,'edit'])->middleware('auth')->name('simpatizantes.edit');
-Route::post('/simpatizante/edit', [simpatizantesctrl::class,'edit'])->middleware('auth')->name('simpatizantes.edit');
-Route::get('/simpatizante/report', [simpatizantesctrl::class,'report'])->middleware('auth')->where('report_option', '0|1|2|3|4|5|6|7|8|9')->name('simpatizantes.report') ;
+Route::post('/simpatizante/{opcionvar}', [simpatizantesctrl::class, 'store'])->middleware('auth')->where('opcionvar', '0|1|2|3|4|5|6|7|8|9')->name('simpatizante.store');
+Route::get('/simpatizante/search/{opcionvar}', [simpatizantesctrl::class,'search'])->middleware('auth')->where('opcionvar', '0|1|2|3|4|5|6|7|8|9')->name('simpatizante.search') ;
+Route::get('/simpatizante/edit}', [simpatizantesctrl::class,'edit'])->middleware('auth')->name('simpatizante.edit');
+Route::post('/simpatizante/edit', [simpatizantesctrl::class,'edit'])->middleware('auth')->name('simpatizante.edit');
+Route::get('/simpatizante/report', [simpatizantesctrl::class,'report'])->middleware('auth')->where('report_option', '0|1|2|3|4|5|6|7|8|9')->name('simpatizante.report') ;
 
 require __DIR__.'/settings.php';

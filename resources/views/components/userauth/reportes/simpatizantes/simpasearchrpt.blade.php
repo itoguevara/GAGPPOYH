@@ -11,7 +11,7 @@
 <flux:card class="space-y-6">
     <div class="relative flex-1 overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
         {{$recordsimpatizantes->links()}}
-        <form method="get" action="{{ route('simpatizantes.store',['opcionvar' => $opcionvar ?? 0]) }}" class="flex flex-col gap-6">
+        <form method="get" action="{{ route('simpatizante.store',['opcionvar' => $opcionvar ?? 0]) }}" class="flex flex-col gap-6">
         @csrf
         <div class="overflow-hidden w-full overflow-x-auto rounded-radius border border-outline dark:border-outline-dark">
             <table class="w-full text-left text-sm text-on-surface dark:text-on-surface-dark">
@@ -42,7 +42,7 @@
                                     <flux:menu.radio.group>
                                         <flux:menu.item
                                             as="button"
-                                            href="{{ route('simpatizantes.edit', ['id' =>Crypt::encrypt($simpatizante->id),'id_accion' => '1']) }}"
+                                            href="{{ route('simpatizante.edit', ['id' =>Crypt::encrypt($simpatizante->id),'id_accion' => '1']) }}"
                                             type="submit"
                                             name="edit"
                                             value="{{ $simpatizante->id }}"
@@ -57,7 +57,7 @@
                                             as="button"
                                             type="submit"
                                             name="printer"
-                                            href="{{ route('simpatizantes.edit', ['id' => Crypt::encrypt($simpatizante->id), 'opcionvar' => $opcionvar ?? 0,'id_accion' => '2','report_option' => '1']) }}"
+                                            href="{{ route('simpatizante.edit', ['id' => Crypt::encrypt($simpatizante->id), 'opcionvar' => $opcionvar ?? 0,'id_accion' => '2','report_option' => '1']) }}"
                                             value="{{ $simpatizante->id }}"
                                             icon=""
                                             class="button-accion button-accion-printer button-short"
@@ -69,7 +69,7 @@
                                         <flux:menu.item
                                             as="button"
                                             type="submit"
-                                            href="{{ route('simpatizantes.edit', ['id' => Crypt::encrypt($simpatizante->id), 'opcionvar' => $opcionvar ?? 0,'id_accion' => '3']) }}"
+                                            href="{{ route('simpatizante.edit', ['id' => Crypt::encrypt($simpatizante->id), 'opcionvar' => $opcionvar ?? 0,'id_accion' => '3']) }}"
                                             name="delete"
                                             value="{{ $simpatizante->id }}"
                                             icon=""
