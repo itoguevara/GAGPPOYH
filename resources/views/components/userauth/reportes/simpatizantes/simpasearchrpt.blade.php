@@ -11,7 +11,7 @@
 <flux:card class="space-y-6">
     <div class="relative flex-1 overflow-hidden rounded-xl border border-neutral-200 dark:border-neutral-700">
         {{$recordsimpatizantes->links()}}
-        <form method="get" action="{{ route('simpatizante.store',['opcionvar' => $opcionvar ?? 0]) }}" class="flex flex-col gap-6">
+        <form method="get" action="{{ route('simpatizante.edit',['opcionvar' => $opcionvar ?? 0]) }}" class="flex flex-col gap-6">
         @csrf
         <div class="overflow-hidden w-full overflow-x-auto rounded-radius border border-outline dark:border-outline-dark">
             <table class="w-full text-left text-sm text-on-surface dark:text-on-surface-dark">

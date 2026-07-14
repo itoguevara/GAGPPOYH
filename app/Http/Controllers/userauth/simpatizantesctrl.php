@@ -98,6 +98,7 @@ public $FunctionsPublic = null;
    {
      $FunctionsPublic = new PublicFunctions();
      $datos = $request->all();
+                dd($datos);
     $_SERVER['REQUEST_METHOD'] === 'POST' ? $datos = $request->all() : $datos = $request->query();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $id_simpatizante = $datos['id_simpatizante'] ?? -1;
@@ -139,10 +140,6 @@ public $FunctionsPublic = null;
             } else {
                 $message = 'Simpatizante no encontrado.';
             }   
-
-
-
-            dd($datos);
             $simpatizantesmdl = simpatizantemdl::find($FunctionsPublic->id_simpatizante);
             if (!$simpatizantesmdl) {
                 return redirect()->back()->with('error', 'Simpatizante no encontrado.');

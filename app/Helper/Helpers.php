@@ -20,10 +20,10 @@ class PublicFunctions
     public $tiposolicitud = null; // Variable para almacenar registros de Tipo de Solicitud
     public $recordtipodirtemail = null; // Variable para almacenar registros de Tipo de Direccion/Telefono/Email
     public $recordnacionalidad = null; // Variable para almacenar registros de Nacionalidad
-    public $recordpais = null; // Variable para almacenar registros de Pais
-    public $recordestado = null; // Variable para almacenar registros de Estado
-    public $recordmunicipio = null; // Variable para almacenar registros de Municipio
-    public $recordciudad = null; // Variable para almacenar registros de Ciudad
+    public $recordpaises = null; // Variable para almacenar registros de Pais
+    public $recordestados = null; // Variable para almacenar registros de Estados
+    public $recordmunicipios = null; // Variable para almacenar registros de Municipios
+    public $recordciudades = null; // Variable para almacenar registros de Ciudades
     public $recordempresa = null; // Variable para almacenar los Datos de la Empresa
     public $recordtipopersona= null; // Variable para almacenar registros de Tipo de personas
     public $recordstatus = null; // Variable para almacenar registros de Status de las solicitudes
@@ -45,9 +45,12 @@ class PublicFunctions
         session(['recordcliente' => PublicFunctions::GetDataObject(15,'',-1)]); // Ejemplo de uso de sesión para almacenar Los Datos del Cliente
         session(['id_persona_user' => $id_persona_user ?? -1]); // Ejemplo de uso de sesión para almacenar id de la Persona del usuario Activo
         session(['id_simpatizante' => $recordsimpatizante[0]->id ?? -1]); // Ejemplo de uso de sesión para almacenar Los Datos del Simpatizante
-        
         session(['recordtipopersona' => PublicFunctions::GetDataObject(1,'',-1)]); // Ejemplo de uso de sesión para almacenar Los Datos del Tipo de Persona
         session(['tiposimpatizante' => PublicFunctions::GetDataObject(22,'',-1)]); // Ejemplo de uso de sesión para almacenar Los Datos del Tipo de Simpatizante
+        session(['recordpaises' => PublicFunctions::GetDataObject(23,'',-1)]); // Ejemplo de uso de sesión para almacenar Los Datos de los Paises
+        session(['recordestados' => PublicFunctions::GetDataObject(24,'',-1)]); // Ejemplo de uso de sesión para almacenar Los Datos de los Estados
+        session(['recordmunicipios' => PublicFunctions::GetDataObject(25,'',-1)]); // Ejemplo de uso de sesión para almacenar Los Datos de los Municipios
+        session(['recordciudades' => PublicFunctions::GetDataObject(26,'',-1)]); // Ejemplo de uso de sesión para almacenar Los Datos de las Ciudades
 
     }
 
@@ -299,7 +302,43 @@ public static function GetDataObject(int $id_opcion_search, string $search_term 
                             ->where('tipo_simpatizante.id', '>', 0)
                             ->orderBy('tipo_simpatizante.descripcion')
                             ->get();
-            break;                         
+                        break;                         
+            case 23:  // Buscar Paises
+                $recorddataobject = DB::table('datacenter.pais')
+                            ->distinct()
+                            ->select(['pais.id', 'pais.nombre'])
+                            ->whereNotNull('pais.id')
+                            ->where('pais.id', '>', 0)
+                            ->orderBy('pais.nombre')
+                            ->get();  
+                            break;
+            case 24:  // Buscar Estados
+                $recorddataobject = DB::table('datacenter.estado')
+                            ->distinct()
+                            ->select(['estado.id', 'estado.nombre'])
+                            ->whereNotNull('estado.id')
+                            ->where('estado.id', '>', 0)
+                            ->orderBy('estado.nombre')
+                            ->get();  
+                            break;
+            case 25:  // Buscar municipios
+                $recorddataobject = DB::table('datacenter.municipio')
+                            ->distinct()
+                            ->select(['municipio.id', 'municipio.nombre'])
+                            ->whereNotNull('municipio.id')
+                            ->where('municipio.id', '>', 0)
+                            ->orderBy('municipio.nombre')
+                            ->get();  
+                            break;
+            case 26:  // Buscar Ciudades
+                $recorddataobject = DB::table('datacenter.ciudad')
+                            ->distinct()
+                            ->select(['ciudad.id', 'ciudad.nombre'])
+                            ->whereNotNull('ciudad.id')
+                            ->where('ciudad.id', '>', 0)
+                            ->orderBy('ciudad.nombre')
+                            ->get();  
+                            break;
 
         default:
             $recorddataobject = null; // O manejar el caso de opción no válida

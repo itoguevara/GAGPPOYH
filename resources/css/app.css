@@ -700,8 +700,7 @@ main {
     flex: 1; /* Distributes available space equally among columns */
     min-width: 200px; /* Ensures columns don't get too narrow before wrapping */
     padding: 10px;
-
-
+    gap: 10px;
     
 }
 
