@@ -1,3 +1,4 @@
+
 <div>
   @php
 
@@ -9,7 +10,7 @@
     $FunctionsPublic->CargaInicialDataRecord();
   
 @endphp
-
+     
           
 <!-- Dependiendo de la opcion que se elija en el menu, se mostrara un contenido diferente, 
     se evalua la variable $opcionvar y se muestra el contenido correspondiente a cada caso.   -->

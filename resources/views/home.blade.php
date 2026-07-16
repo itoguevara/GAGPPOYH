@@ -1,4 +1,5 @@
 @php
+    //dump('Hola 03',get_defined_vars(),$opcionvar);
     $opcionvar = $opcionvar ?? 0;
     $recordsimpatizante = $recordsimpatizante ?? null;
     $recordsimpatizantes = $recordsimpatizantes ?? null;
@@ -11,18 +12,24 @@
     </head>
  
     <body >
-        
-        <x-layouts::app :title="__('Guayana Productiva en Positivo')" :opcionvar="0 ?? 0" :solicituduser="$solicituduser ?? null" class="layout-app">
-            <x-generic.header />   
+
+    
+   
+        <div class ="Container">
+
+           <x-layouts::app :title="__('Guayana en Positivo')" :opcionvar="0 ?? 0" :solicituduser="$solicituduser ?? null" >
+            <x-generic.header :opcionvar="$opcionvar ?? 0"/> 
             @auth <!--  Verificacion de la Autorizacion-->
                 <x-userauth.bodydata :opcionvar="$opcionvar ?? 0" :recordsimpatizante="$recordsimpatizante ?? null" :recordsimpatizantes="$recordsimpatizantes ?? null"></x-userauth.bodydata>
             @else
-                <flux:separator />
-                <x-generic.bodydata :opcionvar="0 ?? 0" :recordsimpatizantes="$recordsimpatizantes ?? null"></x-generic.bodydata> 
+                <x-generic.bodydata :opcionvar="$opcionvar ?? 0" :recordsimpatizantes="$recordsimpatizantes ?? null"></x-generic.bodydata> 
 
             @endauth
-            <x-generic.footer />           
-        </x-layouts::app>
+            <x-generic.footer />
+
+            </x-layouts::app>
+      
+        </div>                
         @livewireScripts
        <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script> 
     <!-- JavaScript Libraries -->

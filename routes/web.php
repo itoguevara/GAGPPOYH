@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 use Livewire\Component;
 use App\Http\Controllers\userauth\usuadatactrl;
 use App\Http\Controllers\userauth\simpatizantesctrl;
+use App\Http\Controllers\generic\genericctrl;
 use app\Models\userauth\simpatizantemdl;
 use App\View\Components\userauth\tcsolicitud;
 use Illuminate\Support\Facades\DB;
@@ -28,18 +29,21 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::view('home', 'home')->name('homeverified');
 });
 */
-Route::get('/', function ($opcionvar = '0', $solicituduser= null) {
-    
+Route::get('/', function ($opcionvar, $solicituduser= null) {
+   
     if (Auth::check()== true) {
         $id_data_search = app()->call('App\Http\Controllers\userauth\usuadatactrl@GetDataUser')->first()->id_persona ?? null;}
      else {   
         $id_data_search = -1; // Valor predeterminado si no hay usuario autenticado
      }
     $recordsimpatizantes = app()->call('App\Http\Controllers\userauth\Simpatizantesctrl@GetDatasimpatizante', ['id_data_search' => $id_data_search, 'id_opcion' => -1]);    
+//     return redirect()->route('home', [$opcionvar]);
+//    return redirect()->route('home')->with('opcionvar', $opcionvar);;
     return view('Home', compact('opcionvar', 'recordsimpatizantes'));
 })->name('home')->where('opcionvar', '0|1|2|3|4|5|6|7|8|9');
 
-Route::post('/', function ($opcionvar = '0', $recordsimpatizantes = null) {
+Route::post('/', function ($opcionvar, $recordsimpatizantes = null) {
+
     return view('Home', compact('opcionvar', 'recordsimpatizantes'));    
 })->name('home')->where('opcionvar', '0|1|2|3|4|5|6|7|8|9');
 
@@ -47,7 +51,9 @@ Route::get('/logout', function () {
     Auth::logout();
     return redirect()->route('login');
 })->name('logout');
-
+/* Rutas Genericas */
+Route::get('/generic/{opcionvar}', [genericctrl::class, 'show'])->middleware('auth')->where('opcionvar', '0|1|2|3|4|5|6|7|8|9')->name('generic.show');
+/* Rutas de Simpatizantes*/
 Route::get('/simpatizante/{opcionvar}', [simpatizantesctrl::class, 'show'])->middleware('auth')->where('opcionvar', '0|1|2|3|4|5|6|7|8|9')->name('simpatizantes') ;
 Route::post('/simpatizante/{opcionvar}', [simpatizantesctrl::class, 'store'])->middleware('auth')->where('opcionvar', '0|1|2|3|4|5|6|7|8|9')->name('simpatizante.store');
 Route::get('/simpatizante/search/{opcionvar}', [simpatizantesctrl::class,'search'])->middleware('auth')->where('opcionvar', '0|1|2|3|4|5|6|7|8|9')->name('simpatizante.search') ;

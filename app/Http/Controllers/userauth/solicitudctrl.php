@@ -128,7 +128,7 @@ class solicitudctrl extends Controller
                  return redirect()->route('home', ['opcionvar' => 0, 'solicituduser' => null])->with('error', $message);
             } elseif ($request->input('fecha_desde') > $request->input('fecha_hasta')) {
                 $message = 'La fecha de inicio no puede ser mayor que la fecha de fin.';
-                 return redirect()->route('home', ['opcionvar' => 0, 'solicituduser' => null])->with('error', $message);
+                 return redirect()->'home', ['opcionvar' => 0, 'solicituduser' => null])->with('error', $message);
             } elseif ($request->input('fecha_desde') != Null && $request->input('fecha_hasta') != Null) {
                 $fecha_desde = $request->input('fecha_desde');
                 $fecha_hasta = $request->input('fecha_hasta');
@@ -152,7 +152,7 @@ class solicitudctrl extends Controller
         case 3: // Buscar por Tipo
             if ($id_tipo_sol== Null || $id_tipo_sol== -1) {                
                 $message = 'Debe seleccionar un tipo de solicitud para la búsqueda por tipo de solicitud.';
-                 return redirect()->route('home', ['opcionvar' => 0, 'solicituduser' => null])->with('error', $message);
+                 return redirect()->'home', ['opcionvar' => 0, 'solicituduser' => null])->with('error', $message);
             } elseif ($id_tipo_sol != Null || $id_tipo_sol > 0) {
                 $solicituduser = DB::table('tramitesconsulares.vwsolicitudes')
                     ->distinct()
